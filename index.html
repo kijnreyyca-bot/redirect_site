@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#10141c">
-  <title>Pinterest Redirect Hub</title>
+  <title>Pinterest European Hub</title>
   <style>
     :root { color-scheme: dark; font: 16px/1.5 system-ui, sans-serif; background: #10141c; color: #f2f5fa; }
     * { box-sizing: border-box; }
@@ -26,13 +26,13 @@
 <body>
   <main>
     <div class="eyebrow">Pinterest Hub</div>
-    <h1>Regional Redirects</h1>
-    <p>Type a shortcut to jump directly to a localized Pinterest site, or filter the list.</p>
+    <h1>European Redirects</h1>
+    <p>Type a shortcut code (e.g., 'de', 'fr', 'pl') and press Enter to jump instantly.</p>
 
     <!-- Quick Redirect Input -->
     <label for="shortcut">Quick redirect / Alias</label>
-    <input type="text" id="shortcut" placeholder="Type shortcut (e.g., 'ru', 'fr') & press Enter..." autocomplete="off">
-    <div class="shortcut-hint">Shortcuts: <strong>ru</strong>, <strong>fr</strong>, <strong>de</strong>, <strong>global</strong>, <strong>uk</strong></div>
+    <input type="text" id="shortcut" placeholder="Type shortcut (e.g., 'de', 'fr', 'ru') & press Enter..." autocomplete="off">
+    <div class="shortcut-hint">Shortcuts: <strong>de</strong>, <strong>fr</strong>, <strong>ch</strong>, <strong>pl</strong>, <strong>ru</strong>, <strong>ua</strong>, <strong>uk</strong>, etc.</div>
 
     <label for="search">Filter destinations</label>
     <input type="text" id="search" placeholder="Filter list..." autocomplete="off">
@@ -44,11 +44,34 @@
 
   <script>
     const destinations = [
-      { label: "Russian Pinterest", url: "https://ru.pinterest.com/", category: "ru.pinterest.com", shortcut: "ru" },
-      { label: "French Pinterest", url: "https://fr.pinterest.com/", category: "fr.pinterest.com", shortcut: "fr" },
-      { label: "German Pinterest", url: "https://de.pinterest.com/", category: "de.pinterest.com", shortcut: "de" },
       { label: "Global Pinterest", url: "https://pinterest.com/", category: "pinterest.com", shortcut: "global" },
-      { label: "British Pinterest", url: "https://uk.pinterest.com/", category: "uk.pinterest.com", shortcut: "uk" }
+      { label: "German Pinterest", url: "https://de.pinterest.com/", category: "de.pinterest.com", shortcut: "de" },
+      { label: "French Pinterest", url: "https://fr.pinterest.com/", category: "fr.pinterest.com", shortcut: "fr" },
+      { label: "Swiss Pinterest", url: "https://ch.pinterest.com/", category: "ch.pinterest.com", shortcut: "ch" },
+      { label: "Polish Pinterest", url: "https://pl.pinterest.com/", category: "pl.pinterest.com", shortcut: "pl" },
+      { label: "Russian Pinterest", url: "https://ru.pinterest.com/", category: "ru.pinterest.com", shortcut: "ru" },
+      { label: "Belarusian Pinterest", url: "https://pinterest.com/", category: "pinterest.com", shortcut: "by" },
+      { label: "Lithuanian Pinterest", url: "https://pinterest.com/", category: "pinterest.com", shortcut: "lt" },
+      { label: "Ukrainian Pinterest", url: "https://ua.pinterest.com/", category: "ua.pinterest.com", shortcut: "ua" },
+      { label: "Italian Pinterest", url: "https://it.pinterest.com/", category: "it.pinterest.com", shortcut: "it" },
+      { label: "Spanish Pinterest", url: "https://es.pinterest.com/", category: "es.pinterest.com", shortcut: "es" },
+      { label: "Portuguese Pinterest", url: "https://pt.pinterest.com/", category: "pt.pinterest.com", shortcut: "pt" },
+      { label: "British Pinterest", url: "https://uk.pinterest.com/", category: "uk.pinterest.com", shortcut: "uk" },
+      { label: "Irish Pinterest", url: "https://ie.pinterest.com/", category: "ie.pinterest.com", shortcut: "ie" },
+      { label: "Slovenian Pinterest", url: "https://pinterest.com/", category: "pinterest.com", shortcut: "si" },
+      { label: "Slovakian Pinterest", url: "https://pinterest.com/", category: "pinterest.com", shortcut: "sk" },
+      { label: "Hungarian Pinterest", url: "https://hu.pinterest.com/", category: "hu.pinterest.com", shortcut: "hu" },
+      { label: "Austrian Pinterest", url: "https://at.pinterest.com/", category: "at.pinterest.com", shortcut: "at" },
+      { label: "Belgian Pinterest", url: "https://be.pinterest.com/", category: "be.pinterest.com", shortcut: "be" },
+      { label: "Dutch Pinterest", url: "https://nl.pinterest.com/", category: "nl.pinterest.com", shortcut: "nl" },
+      { label: "Czech Pinterest", url: "https://cz.pinterest.com/", category: "cz.pinterest.com", shortcut: "cz" },
+      { label: "Romanian Pinterest", url: "https://ro.pinterest.com/", category: "ro.pinterest.com", shortcut: "ro" },
+      { label: "Swedish Pinterest", url: "https://se.pinterest.com/", category: "se.pinterest.com", shortcut: "se" },
+      { label: "Norwegian Pinterest", url: "https://no.pinterest.com/", category: "no.pinterest.com", shortcut: "no" },
+      { label: "Danish Pinterest", url: "https://dk.pinterest.com/", category: "dk.pinterest.com", shortcut: "dk" },
+      { label: "Finnish Pinterest", url: "https://fi.pinterest.com/", category: "fi.pinterest.com", shortcut: "fi" },
+      { label: "Greek Pinterest", url: "https://gr.pinterest.com/", category: "gr.pinterest.com", shortcut: "gr" },
+      { label: "Turkish Pinterest", url: "https://tr.pinterest.com/", category: "tr.pinterest.com", shortcut: "tr" }
     ];
 
     const shortcutInput = document.querySelector("#shortcut");
@@ -66,7 +89,7 @@
           status.textContent = "";
           window.location.href = match.url; // Performs the redirect
         } else {
-          status.textContent = `No redirect found for "${query}". Try 'ru', 'fr', 'de', 'global', or 'uk'.`;
+          status.textContent = `No redirect found for "${query}".`;
         }
       }
     });
