@@ -3,8 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blank.</title>
+  <meta name="theme-color" content="#10141c">
+  <title>Quick Links</title>
+  <style>
+    :root { color-scheme: dark; font: 16px/1.5 system-ui, sans-serif; background: #10141c; color: #f2f5fa; }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; background: radial-gradient(ellipse at top, #25314b, transparent 60%), #10141c; }
+    main { width: min(520px, 100%); padding: clamp(24px, 6vw, 40px); border: 1px solid #ffffff20; border-radius: 22px; background: #141a24e8; box-shadow: 0 24px 80px #0008; }
+    .eyebrow { color: #a9c8ff; font-size: 11px; font-weight: 750; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 8px 0; font-size: clamp(30px, 7vw, 42px); line-height: 1.1; letter-spacing: -.04em; }
+    p { margin: 0 0 24px; color: #aab4c4; }
+    label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 700; }
+    select, button { width: 100%; min-height: 48px; border-radius: 12px; font: inherit; }
+    select { padding: 0 14px; border: 1px solid #ffffff2a; background: #0d1119; color: inherit; }
+    button { margin-top: 12px; border: 0; background: #a9c8ff; color: #10141c; font-weight: 800; cursor: pointer; }
+    button:hover { background: #c4d8ff; }
+    button:focus-visible, select:focus-visible { outline: 3px solid #ffffff; outline-offset: 3px; }
+    #status { min-height: 1.5em; margin: 12px 0 0; color: #ffb8b8; font-size: 13px; }
+  </style>
 </head>
 <body>
+  <main>
+    <div class="eyebrow">Quick links</div>
+    <h1>Choose a destination</h1>
+    <p>Select a link below to open it in a new tab.</p>
+    <label for="destination">Destination</label>
+    <select id="destination">
+      <option value="">Choose a site…</option>
+    </select>
+    <button id="open-link" type="button">Open destination ↗</button>
+    <p id="status" role="status" aria-live="polite"></p>
+  </main>
+
+  <script>
+    // Add or remove destinations here. Each entry needs a label and an HTTPS URL.
+    const destinations = [
+      { label: "Example site", url: "https://example.com/" },
+      { label: "Another example", url: "https://www.wikipedia.org/" }
+    ];
+
+    const selector = document.querySelector("#destination");
+    const status = document.querySelector("#status");
+
+    for (const destination of destinations) {
+      const option = document.createElement("option");
+      option.value = destination.url;
+      option.textContent = destination.label;
+      selector.append(option);
+    }
+
+    document.querySelector("#open-link").addEventListener("click", () => {
+      const url = selector.value;
+      if (!url) {
+        status.textContent = "Choose a destination first.";
+        selector.focus();
+        return;
+      }
+
+      try {
+        const parsed = new URL(url);
+        if (parsed.protocol !== "https:") throw new Error("Only HTTPS links are allowed.");
+        status.textContent = "";
+        window.open(parsed.href, "_blank", "noopener,noreferrer");
+      } catch {
+        status.textContent = "That link is invalid. Check the URL in the destinations list.";
+      }
+    });
+  </script>
 </body>
 </html>
